@@ -1,0 +1,39 @@
+<form class="container d-flex justify-content-center align-items-center">
+    <fieldset>
+        <legend class="mb-3 text-center">Connexion</legend>
+
+
+        <div class="mb-3">
+            <label class="form-label">
+                Votre email:
+            </label>
+
+            <input class="form-control" type="email" placeholder="Votre email ici" name="email" [(ngModel)]="user.email"
+                #email="ngModel" 
+                pattern="[a-zA-Z0-9._-]+@[a-zA-Z.]+\.[a-zA-Z]{2,6}" 
+                required>
+            <div class="alert alert-danger" *ngIf="email.touched && !email.valid">
+                <div *ngIf="email.errors&&email.errors['required']">
+                    Veuillez saisir un email
+                </div>
+                <div *ngIf="email.errors&&email.errors['pattern']">
+                    Veuillez saisir un email valide
+                </div>
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">
+                Votre password:
+            </label>
+            <input type="password" required placeholder="Votre password ici" name="password" [(ngModel)]="user.password"
+                #pass="ngModel" class="form-control">
+            <div class="alert alert-danger" *ngIf="pass.touched && !pass.valid">
+                <div *ngIf="pass.errors && pass.errors['required']">veuillez saisir un password</div>
+            </div>
+        </div>
+
+        <div class="text-center"><button class="btn btn-primary">Envoyer</button>
+        </div>
+    </fieldset>
+</form>

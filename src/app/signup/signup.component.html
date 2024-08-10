@@ -1,0 +1,97 @@
+<form #myform="ngForm" class="container d-flex justify-content-center align-items-center">
+
+    <div class="form-group">
+
+        <div class="mb-3 text-center">
+            <h2>Inscription</h2>
+        </div>
+        <div class="mb-3">
+
+            <label class="form-label">
+                Votre nom:
+            </label>
+            <input type="text" required placeholder="Votre nom ici" pattern="[A-Z a-z èé]{3,15}" name="nom"
+                [(ngModel)]="user.nom" #nom="ngModel" class="form-control">
+
+            <br>
+            <div class="alert alert-danger" role="alert" *ngIf="nom.touched && !nom.valid">
+                <div *ngIf="nom.errors && nom.errors['required']"> veuillez Saisir nom
+                </div>
+                <div *ngIf="nom.errors&&nom.errors['pattern']"> Veuillez saisie un nom valide !
+
+                </div>
+            </div>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">
+                Votre prenom:
+            </label>
+            <input type="text" required placeholder="Votre prenom ici" pattern="[A-Z a-z èé]{3,15}" name="prenom"
+                [(ngModel)]="user.prenom" #prenom="ngModel" class="form-control">
+
+            <br>
+            <div class="alert alert-danger" role="alert" *ngIf="prenom.touched && !prenom.valid">
+                <div *ngIf="prenom.errors && prenom.errors['required']"> veuillez Saisir un prenom
+                </div>
+                <div *ngIf="prenom.errors&&prenom.errors['pattern']"> Veuillez saisie un prenom valide !
+
+                </div>
+            </div>
+        </div>
+
+
+        <div class="mb-3">
+            <label class="form-label">
+                Votre email:
+            </label>
+
+            <input type="email" required placeholder="Votre email ici" name="email" [(ngModel)]="user.email"
+                #email="ngModel" class="form-control">
+            <div class="alert alert-danger" *ngIf="email.touched && !email.valid">
+                <div *ngIf="email.errors&&email.errors['required']">
+                    Veuillez saisir un email
+                </div>
+                <div *ngIf="email.errors&&email.errors['email']">
+                    Veuillez saisir un email valide
+                </div>
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">
+                Votre password:
+            </label>
+            <input type="password" required placeholder="Votre password ici" name="password" [(ngModel)]="user.password"
+                #pass="ngModel" class="form-control">
+                <div class="alert alert-danger" *ngIf="pass.touched && !pass.valid">
+                    <div *ngIf="pass.errors && pass.errors['required']">veuillez saisir un password</div>
+                </div>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">
+                Votre age:
+            </label>
+            <input type="number" required min="18" placeholder="Votre age ici" name="age" [(ngModel)]="user.age"
+                class="form-control" #age="ngModel">
+                <div class="alert alert-danger" *ngIf="age.touched && !age.valid">
+                    <div *ngIf="age.errors && age.errors['required']">veuillez saisir Age</div>
+                    <div *ngIf="age.errors && age.errors['min']">veuillez saisir Age>=18</div>
+
+                </div>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">
+                Votre telephone:
+            </label>
+            <input type="text" required placeholder="Votre telephone ici" name="telephone" [(ngModel)]="user.telephone"
+                #telephone="ngModel" class="form-control">
+        </div>
+        <div class="mb-3">
+            <input type="checkbox" name="cd" [(ngModel)]="condition" #cd="ngModel"><label>J'ai lu et accepte</label>
+        </div>
+        <div class="text-center"><button [disabled]="!condition || myform.invalid "
+                class="btn btn-primary">Envoyer</button></div>
+    </div>
+</form>
